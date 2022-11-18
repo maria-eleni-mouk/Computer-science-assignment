@@ -1,6 +1,9 @@
 # Computer-science-assignment (student number: 658421)
 In this project I use Local Linear Hashing, in order to perform duplicate detection on a TV data set while minimizing the number of product comparisons necessary. 
-The purpose of this project is to do a duplicate detection on a TV Data set while reducing the required comparisons between product by using Local Linear Hashing.
+The purpose of this project is to do a duplicate detection on a TV Data set while reducing the required comparisons between product by using Local Linear Hashing.  
+
+Locality 
+Sensitive  Hashing  (LSH).
 
 Our algorithm does this by first creating a dictionary and creating binary vectors for  each product to allow for numerical comparison. Then we apply min hashing and local linear hashing and afterwards a two component similarity method to find the final duplicates.
 In order to enable numerical comparison, our algorithm first creates a dictionary and binary vectors for each product. We then use local linear hashing and min hashing, followed by a two component similarity method to locate the remaining duplicates.
