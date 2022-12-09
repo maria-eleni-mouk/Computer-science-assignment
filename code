@@ -275,7 +275,7 @@ BootStrap_data <-function(TVData){
   return(list('TVData_BS' = list_of_products, 'TVData_BS_Test' = list_of_products_test))
 }
 
-#function Estimation_matrix: build the tp,np,fp,fn values
+#function Estimation_matrix: tp,np,fp,fn values
 Estimation_matrix = function(neighbor_matrix, list_of_products){
   TP = 0; FP = 0; TN = 0; FN = 0
   n_products = length(list_of_products)
@@ -347,13 +347,13 @@ df = as.data.frame(TotalEvaluation_BS)
 names(df) = c("Quality", 'Completeness', 'F1*-Measure', 
                       'Comparisons', 'F1-Measure')
                                 
-pq <- ggplot(df, aes("Comparisons","Quality'")) + 
+q <- ggplot(df, aes("Comparisons","Quality'")) + 
   geom_line()
-pq + theme_classic()
+q + theme_classic()
 
-pc <- ggplot(df, aes("Comparisons","Completeness")) + 
+c <- ggplot(df, aes("Comparisons","Completeness")) + 
     geom_line()
-pc + theme_classic()
+c + theme_classic()
 
 f1s <- ggplot(df, aes("Comparisons","F1*-Measure")) + 
       geom_line()
