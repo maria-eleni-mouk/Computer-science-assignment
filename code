@@ -141,41 +141,6 @@ MW <- function(nmk){
   return(Modelwords)
 }
 
-#function MSM: Multi-component Similarity Method
-MSM <- function(ProductData, CandidateMatrix, MU, GAMMA){
-  n = length(ProductData)
-  disSim = matrix(data = 0, nrow = n, ncol = n)
-  disSim[lower.tri(disSim)] <- NA 
-
-  for (i in 1:(n-1)) {
-    for (j in i:n) {
-      product_i = TVData[[i]]
-      product_j = TVData[[j]]
-      if (SameShop(product_i,product_j) | CandidateMatrix[i,j] == 0 |  DiffBrand(product_i,product_j)){
-        disSim[i,j] = Inf
-      }else{
-        sim = 0
-        avgSim = 0
-        m = 0 
-        w = 0 
-        nmk_i = TVData[[i]][["featuresMap"]] 
-        nmk_j = TVData[[j]][["featuresMap"]]
-          }
-        }
-        if(w > 0){
-          avgSim = sim / w
-        }
-        #apply MW
-        if(length(nmk_i==0)|length(nmk_j==0)){
-          mwPerc = 0
-        }else{
-          mwPerc = MW(ExMW(nmk_i),ExMW(nmk_j))
-        }
-    }
-  }
-  return(disSim)
-}
-
 #function Hash_fun: calculate hash values
 Hash_fun <- function(a,b,r){
   return(  (a*r+b) %%  PRIME)
@@ -268,6 +233,40 @@ LSHonerow <- function(signature_matrix,b){
   return(CandidateMatrix)
 }
 
+#function MSM: Multi-component Similarity Method
+MSM <- function(ProductData, CandidateMatrix, MU, GAMMA){
+  n = length(ProductData)
+  disSim = matrix(data = 0, nrow = n, ncol = n)
+  disSim[lower.tri(disSim)] <- NA 
+
+  for (i in 1:(n-1)) {
+    for (j in i:n) {
+      product_i = TVData[[i]]
+      product_j = TVData[[j]]
+      if (SameShop(product_i,product_j) | CandidateMatrix[i,j] == 0 |  DiffBrand(product_i,product_j)){
+        disSim[i,j] = Inf
+      }else{
+        sim = 0
+        avgSim = 0
+        m = 0 
+        w = 0 
+        nmk_i = TVData[[i]][["featuresMap"]] 
+        nmk_j = TVData[[j]][["featuresMap"]]
+          }
+        }
+        if(w > 0){
+          avgSim = sim / w
+        }
+        #apply MW
+        if(length(nmk_i==0)|length(nmk_j==0)){
+          mwPerc = 0
+        }else{
+          mwPerc = MW(ExMW(nmk_i),ExMW(nmk_j))
+        }
+    }
+  }
+  return(disSim)
+}
 #function Bootstrap: generate bootstrapdata
 BootStrap_data <-function(TVData){
   
